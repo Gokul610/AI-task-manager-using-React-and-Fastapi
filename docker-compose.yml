@@ -1,0 +1,74 @@
+version: '3.9'
+
+services:
+  # ---------------------------------
+  # Service 1: The PostgreSQL Database
+  # ---------------------------------
+  db:
+    image: postgres:15-alpine
+    container_name: task-manager-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRESQL_DATABASE}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRESQL_USERNAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---------------------------------
+  # Service 2: The FastAPI Backend
+  # ---------------------------------
+  backend:
+    container_name: task-manager-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mounts for app code (for live-reload)
+      - ./backend/app:/app/app
+      - ./backend/migrations:/app/migrations
+      - ./backend/scripts:/app/scripts
+      
+      # --- THIS IS THE FIX for the ML models ---
+      # It mounts your local 'ml' folder to /ml inside the container
+      - ./ml:/ml
+      
+    env_file:
+      # Loads variables from the .env file in the root
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ---------------------------------
+  # Service 3: The React Frontend
+  # ---------------------------------
+  frontend:
+    container_name: task-manager-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      # --- THIS IS THE FIX for the port ---
+      # It maps your local 3000 to the container's 3000 (where npm start runs)
+      - "3000:3000"
+    volumes:
+      # Mounts for app code (for live-reload)
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - backend
+
+# ---------------------------------
+# Volumes (for the database)
+# ---------------------------------
+volumes:
+  pgdata:

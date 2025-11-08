@@ -1,0 +1,36 @@
+# backend/requirements.txt
+
+# --- Core Web Framework & Server ---
+fastapi
+uvicorn[standard]
+python-multipart
+
+# --- Database & ORM ---
+sqlalchemy
+alembic
+psycopg2-binary
+
+# --- Settings & Configuration ---
+pydantic
+pydantic-settings
+pydantic[email]
+
+# --- Security & Authentication ---
+passlib
+bcrypt==3.2.0
+python-jose[cryptography]
+
+# --- AI & MACHINE LEARNING (Using Gemini API) ---
+scikit-learn
+dateparser
+google-generativeai
+
+# --- ML Model Training ---
+pandas
+joblib
+
+# --- NEW: Google API & OAuth ---
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+httpx 

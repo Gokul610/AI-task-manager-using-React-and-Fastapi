@@ -1,0 +1,91 @@
+/* frontend/src/app.css */
+
+/* Import Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define CSS variables for themes */
+@layer base {
+  /* Default Light Theme (Kept for reference) */
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 222.2 84% 4.9%; /* Dark Slate Gray */
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 222.2 84% 4.9%; /* Dark Slate Gray */
+    --border: 214.3 31.8% 91.4%; /* Light Gray */
+    --input: 214.3 31.8% 91.4%; /* Light Gray */
+    --primary: 221.2 83.2% 53.3%; /* Blue */
+    --primary-foreground: 210 40% 98%; /* Almost White */
+    --secondary: 210 40% 96.1%; /* Very Light Gray */
+    --secondary-foreground: 222.2 47.4% 11.2%; /* Dark Blue/Gray */
+    --accent: 210 40% 96.1%; /* Very Light Gray */
+    --accent-foreground: 222.2 47.4% 11.2%; /* Dark Blue/Gray */
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: 210 40% 98%; /* Almost White */
+    --muted: 210 40% 96.1%; /* Very Light Gray */
+    --muted-foreground: 215.4 16.3% 46.9%; /* Medium Gray */
+    --ring: 221.2 83.2% 53.3%; /* Blue */
+    --chart-accent: 190 95% 45%; /* Teal/Cyan */
+    --priority-high: 0 72% 51%; /* Red/Orange */
+    --priority-medium: 39 90% 50%; /* Orange/Yellow */
+    --priority-low: 142 71% 45%; /* Green */
+  }
+
+  /* --- NEW DARK THEME --- */
+  /* Based on Image 2 (the "Sidebar" image) */
+  .dark {
+    --background: 224 71% 4%; /* Very Dark Blue (Almost Black) */
+    --foreground: 210 40% 98%; /* Almost White */
+    
+    /* "Glass" card effect */
+    --card: 224 71% 9%; /* Dark Blue, slightly lighter than bg */
+    --card-foreground: 210 40% 98%; /* Almost White */
+    
+    --border: 217 33% 25%; /* Muted Dark Blue */
+    --input: 217 33% 20%; /* Darker Muted Blue */
+    
+    /* New "Teal" Primary Color */
+    --primary: 180 100% 50%; /* Bright Cyan/Teal */
+    --primary-foreground: 224 71% 4%; /* Dark Blue (for text on buttons) */
+    
+    --secondary: 217 33% 17%; /* Darker Blue/Gray */
+    --secondary-foreground: 210 40% 98%; /* Almost White */
+    
+    --accent: 217 33% 17%; /* Darker Blue/Gray */
+    --accent-foreground: 210 40% 98%; /* Almost White */
+    
+    --destructive: 0 63% 50%; /* Red */
+    --destructive-foreground: 210 40% 98%; /* Almost White */
+    
+    --muted: 217 33% 17%; /* Darker Blue/Gray */
+    --muted-foreground: 215 20% 65%; /* Light Gray */
+    
+    /* Ring/Focus color */
+    --ring: 180 100% 50%; /* Bright Cyan/Teal */
+    
+    /* Chart and Priority colors */
+    --chart-accent: 180 100% 50%; /* Bright Cyan/Teal */
+    --priority-high: 0 84.2% 60.2%; /* Red */
+    --priority-medium: 39 90% 50%; /* Orange/Yellow */
+    --priority-low: 142 71% 45%; /* Green */
+  }
+}
+
+/* Set the base body styles */
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    /* Keep existing font settings */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

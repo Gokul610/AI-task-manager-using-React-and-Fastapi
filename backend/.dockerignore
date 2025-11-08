@@ -1,0 +1,14 @@
+# Ignore the .env file
+.env
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore Docker files
+Dockerfile
+.dockerignore
+
+# Ignore git files
+.git
+.gitignore
